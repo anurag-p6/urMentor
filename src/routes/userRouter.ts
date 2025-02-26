@@ -1,6 +1,6 @@
 import express,{Request,Response}  from "express";
 import mongoose from "mongoose";
-import { userModal } from "../models/usermodel";
+import { userModal } from "../models/userModel.js";
 
  export const userRouter = express.Router();
 
