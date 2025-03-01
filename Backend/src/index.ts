@@ -1,10 +1,10 @@
-import express from 'express';
-import { userRouter } from './routes/userRoutes';
+import express,{Express} from 'express';
+import { userRouter } from './routes/signupRoutes';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 dotenv.config()
 
-const app = express();
+const app: Express = express();
 app.use(express.json());
 
 const mongooseconnection = async (): Promise<void> => {
