@@ -1,7 +1,8 @@
 import express,{Express} from 'express';
-import { userRouter } from './routes/signupRoutes';
+import { signupRouter } from './routes/signupRoutes';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import { signinRouter } from './routes/signinRoutes';
 dotenv.config()
 
 const app: Express = express();
@@ -19,7 +20,8 @@ const mongooseconnection = async (): Promise<void> => {
 
 mongooseconnection();
 
-app.use('/api', userRouter);
+app.use('/api', signupRouter);
+app.use('/api',signinRouter)
 
 
 app.listen(3000, () => {

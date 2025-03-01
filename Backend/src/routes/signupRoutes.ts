@@ -1,7 +1,7 @@
 import express,{Request, response, Response} from 'express'
 import { signup, verifyUser } from '../controllers/signupController'
 
-export const userRouter = express.Router();
+export const signupRouter = express.Router();
 
-userRouter.post('/signup', signup);
-userRouter.post('/verify',verifyUser);
+signupRouter.post('/signup', signup);
+signupRouter.post('/verify',verifyUser);
