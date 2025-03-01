@@ -4,6 +4,7 @@ import { userModel } from '../models/userModel'
 import bcrypt from 'bcrypt'
 import { string, z } from 'zod'
 import jwt  from 'jsonwebtoken'
+import sendMail from '../middlewares/sendMail'
   
 export const signup = async (req: Request, res: Response) => {
   const { firstname,lastname,contact_no, email, password } = req.body;
@@ -33,7 +34,7 @@ export const signup = async (req: Request, res: Response) => {
     })
   }
   try {
-    const user = await userModel.findOne({
+    let user:object | null = await userModel.findOne({
       email
     })
 
@@ -42,8 +43,18 @@ export const signup = async (req: Request, res: Response) => {
         message:"User already exists"
       })
     }
+
   
     const hashedPassword = await bcrypt.hash(password,12);
+
+
+    user = {
+      firstname,
+      lastname,
+      contact_no,
+      email,
+      password:hashedPassword
+    }
 
     const otp = Math.floor(Math.random()*1000000);
 
@@ -62,17 +73,17 @@ export const signup = async (req: Request, res: Response) => {
       otp
     }
 
-    await userModel.create({
-      firstname,
-      lastname,
-      contact_no,
-      email,
-      password:hashedPassword
-    })
+    try {
+      await sendMail(email, "Your OTP Code", { firstname, otp });
+      res.status(200).json({
+        message:`otp sent to ${firstname}`,
+        activationToken,
+      })
+    } catch (error) {
+      res.status(500).json({ message: "Failed to send OTP", error });
+    }
 
-    res.status(200).json({
-      message:"Signup succesfully"
-    })
+   
   } catch(error:any) {
     console.log(error.errmsg)
     res.status(400).json({
