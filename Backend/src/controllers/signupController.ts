@@ -79,6 +79,7 @@ export const signup = async (req: Request, res: Response) => {
         message: `otp sent to ${firstname}`,
         activationToken,
       })
+      return;
     } catch (error) {
       res.status(500).json({ message: "Failed to send OTP", error });
       return;
@@ -89,7 +90,8 @@ export const signup = async (req: Request, res: Response) => {
     console.log(error.errmsg)
     res.status(400).json({
       message: error
-    })
+    });
+    return;
   }
 }
 
@@ -103,10 +105,12 @@ export const verifyUser = async (req: Request, res: Response) => {
       res.status(400).json({
         messsage: "OTP Expired",
       });
+      return;
     } else if (verify.otp !== otp) {
       res.status(400).json({
         message: "Invalid OTP"
-      })
+      });
+      return;
     }
 
     await userModel.create({
@@ -124,7 +128,8 @@ export const verifyUser = async (req: Request, res: Response) => {
 
   } catch (error) {
     res.status(400).json({
-      message: error
+      message: (error as Error).message
     })
+    return;
   }
 }
