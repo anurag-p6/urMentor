@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 interface AuthenticatedRequest extends Request {
   user?: IUser | null;
 }
+
 export const isAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const token = req.headers.token as string | undefined;
 
@@ -42,4 +43,23 @@ export const isAuth = async (req: AuthenticatedRequest, res: Response, next: Nex
     return;
   }
 
+}
+
+export const isAdmin = (req:AuthenticatedRequest, res:Response, next:NextFunction) => {
+   const user:IUser = req.user as IUser;
+  try {
+   if(user.role !== 'admin') {
+    res.status(403).json({
+      message:"You are not admin"
+    });
+    return;
+   }
+
+   next();
+  } catch(error) {
+    res.status(500).json({
+      message:(error as Error).message
+    });
+    return;
+  }
 }

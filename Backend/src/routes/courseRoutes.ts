@@ -1,7 +1,5 @@
-import express, { Express, Request, Response } from "express";
+import express from 'express'
 
-const courseRouter = express.Router();
+export const courseRoute = express.Router();
 
-courseRouter.post('/course',(req:Request, res:Response) => {
-  
-})
+courseRoute.post('/admin/create', )

@@ -3,6 +3,7 @@ import { signupRouter } from './routes/signupRoutes';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import { signinRouter } from './routes/signinRoutes';
+import adminRouter from './routes/adminRoutes';
 dotenv.config()
 
 const app: Express = express();
@@ -22,6 +23,8 @@ mongooseconnection();
 
 app.use('/api', signupRouter);
 app.use('/api',signinRouter)
+app.use('/api', adminRouter);
+app.use('/api', )
 
 
 app.listen(3000, () => {
