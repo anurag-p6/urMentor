@@ -1,4 +1,4 @@
-# Backend for [Your Project Name]
+# Backend for UrMentor
 
 Welcome to the backend repository for **UrMentor**. This project is built using **Node.js, Express, TypeScript, and MongoDB**. Follow the guide below to set up the project and contribute.
 
