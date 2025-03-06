@@ -7,4 +7,4 @@ import { upload } from '../middlewares/multer.middleware';
 
 export const courseRoute = express.Router();
 
-courseRoute.post('/admin/create', isAuth, isInstructor, upload.single('courseImage'), createCourse)
+courseRoute.post('/courses/create', isAuth, isInstructor, upload.single('courseImage'), createCourse)

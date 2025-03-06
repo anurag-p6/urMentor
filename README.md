@@ -1,4 +1,4 @@
-# Backend for UrMentor
+# Backend for UrM
 
 Welcome to the backend repository for **UrMentor**. This project is built using **Node.js, Express, TypeScript, and MongoDB**. Follow the guide below to set up the project and contribute.
 
@@ -15,8 +15,8 @@ Welcome to the backend repository for **UrMentor**. This project is built using 
 ## 📌 Getting Started
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-username/your_project_backend.git
-cd your_project_backend
+git clone https://github.com/anurag-p6/urMentor-Backend.git
+cd urMentor-Backend
 ```
 
 ### 2️⃣ Install Dependencies
@@ -66,8 +66,9 @@ backend/
 ---
 ## 📜 API Endpoints
 ### ✅ Authentication
-- `POST /api/auth/register` - Register a user
-- `POST /api/auth/login` - Login a user
+- `POST /api/signup` - Register a user
+- `POST /api/verify` - Verify a user
+- `POST /api/signin` - Login a user
 
 ### 📚 Courses
 - `POST /api/courses/create` - Create a course (Instructor only)
@@ -106,7 +107,7 @@ Go to the original repository and create a **Pull Request (PR)**.
 
 ---
 ## 🛠️ Issues & Discussions
-- If you find a bug, [open an issue](https://github.com/your-username/your_project_backend/issues).
+- If you find a bug, [open an issue](https://github.com/anurag-p6/urMentor-Backend/issues).
 - For discussions and feature requests, use the **Discussions** tab.
 
 ---

@@ -5,6 +5,7 @@ import { IUser } from "../models/userModel";
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose";
 import { any, object, Schema, string } from "zod";
+import { AuthenticatedRequest } from "../middlewares/isAuth";
 
 export const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -52,9 +53,8 @@ export const signin = async (req: Request, res: Response) => {
   }
 }
 
-export const myprofile = async (req: Request, res: Response) => {
+export const myprofile = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    //@ts-ignore
     const user = await userModel.findById(req.user?._id);
     res.status(200).json({
       message: user
