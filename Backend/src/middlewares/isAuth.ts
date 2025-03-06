@@ -6,8 +6,9 @@ import { decode } from "punycode";
 import mongoose from "mongoose";
 
 
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user?: IUser | null;
+  file?:Express.Multer.File;
 }
 
 export const isAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
@@ -45,10 +46,10 @@ export const isAuth = async (req: AuthenticatedRequest, res: Response, next: Nex
 
 }
 
-export const isAdmin = (req:AuthenticatedRequest, res:Response, next:NextFunction) => {
-   const user:IUser = req.user as IUser;
+export const isInstructor = (req:AuthenticatedRequest, res:Response, next:NextFunction) => {
+   const user = req.user as IUser;
   try {
-   if(user.role !== 'admin') {
+   if(user.role !== 'instructor') {
     res.status(403).json({
       message:"You are not admin"
     });

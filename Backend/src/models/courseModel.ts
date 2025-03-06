@@ -3,12 +3,13 @@ import mongoose,{ Document,Schema } from "mongoose";
 mongoose.pluralize(null);   
 
 export interface ICourse extends Document {
-    course:string;
+    _id:mongoose.Types.ObjectId,
+    courseName:string;
     courseId: string;
     description:string;
     imageurl:string;
     price:Number;
-    createdBy: mongoose.Schema.Types.ObjectId;
+    createdBy: mongoose.Schema.Types.ObjectId | null;
     createdAt: Date;
     duration:string;
     validity:string;

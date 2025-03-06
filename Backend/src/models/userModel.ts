@@ -9,7 +9,7 @@ export interface IUser extends Document {
     contact_no: Number;
     email: string;
     password: string;
-    role: 'student' | 'teacher' | 'admin';
+    role: 'student' | 'instructor' | 'admin';
     createdAt: Date;
     enrolledCourses: mongoose.Schema.Types.ObjectId[];
 } 
